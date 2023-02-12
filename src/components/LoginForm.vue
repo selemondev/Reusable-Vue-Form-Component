@@ -8,36 +8,21 @@ interface Props {
   passwordEmptyError: string
 };
 
-const formData = reactive<Props>({
-  email: '',
-  password: '',
-  emailError: '',
-  passwordError: '',
-  emailEmptyError: "",
-  passwordEmptyError: "",
-});
-const { validateEmail, validatePasswordLength } = useFormValidation()
+// const formData = reactive<Props>({
+//   email: '',
+//   password: '',
+//   emailError: '',
+//   passwordError: '',
+//   emailEmptyError: "",
+//   passwordEmptyError: "",
+// });
+const { formData, response } = useFormValidation();
 const emit = defineEmits(["submit"]);
 const handleSubmit = async () => {
+  const validate = await response()
   emit("submit", formData);
-  try {
-    if (!formData.email) {
-      formData.emailEmptyError = "Email address is required";
-    } else if (!validateEmail(formData.email)) {
-      formData.emailError = "Please enter a valid email address";
-    };
-
-    if (!formData.password) {
-      formData.passwordEmptyError = "Password is required";
-    } else if (!validatePasswordLength(formData.password)) {
-      formData.passwordError = "Password should be a minimum of 8 characters";
-    };
-
-    setTimeout(() => {
-      formData.emailEmptyError = formData.emailError = formData.passwordEmptyError = formData.passwordError = "";
-    }, 2000);
-  } catch (err: any) {
-    console.log(err)
+  if (validate) {
+    console.log(formData)
   }
 }
 </script>
