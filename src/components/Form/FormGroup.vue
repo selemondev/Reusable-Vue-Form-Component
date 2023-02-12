@@ -8,7 +8,9 @@ interface Props {
     errorClass?: string,
     modelValue: string | number,
     error: string,
-    errorMessage: string
+    errorMessage: string,
+    errorEmpty: string,
+    errorEmptyMessage: string
 }
 const emit = defineEmits<{
     (e: 'update:modelValue', value: string | number): void
@@ -26,6 +28,7 @@ const props = defineProps<Props>();
                 :placeholder="props.placeholder" :value="props.modelValue" :class="props.inputClass" />
             <Label :class="props.labelClass">{{ props.label }}</Label>
         </div>
-        <Error :class="props.errorClass" v-if="props.error">{{ props.errorMessage }}</Error>
+        <Error :class="props.errorClass" v-if="props.error">{{ props.error }}</Error>
+        <Error :class="props.errorClass" v-if="props.errorEmpty">{{ props.errorEmptyMessage }}</Error>
     </div>
 </template>
