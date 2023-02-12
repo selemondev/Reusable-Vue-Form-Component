@@ -3,23 +3,19 @@ const props = defineProps({
   type: String,
   typeDescription: String
 });
-
 const { formData, response } = useRegisterFormValidation();
 const emit = defineEmits(["submit"]);
-const handleSubmit = () => {
-  const validate = response();
+const handleSubmit = async () => {
+  const validate = await response();
   emit("submit", formData);
   if (validate) {
-    console.log(formData)
+    alert("valid")
   }
 }
 </script>
 
 <template>
   <div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
-    <div
-      class="absolute inset-0 bg-[url(/img/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]">
-    </div>
     <div
       class="relative mx-auto w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
       <div class="w-full">
@@ -30,16 +26,21 @@ const handleSubmit = () => {
         <div class="mt-8">
           <form @submit.prevent="handleSubmit()">
             <FormGroup v-model="formData.email" type="email" placeholder="Email Address" label="Email"
-              :error="formData.emailEmptyError" :errorMessage="formData.emailEmptyError" />
+              :error="formData.emailError" :errorMessage="formData.emailError" :errorEmpty="formData.emailEmptyError"
+              :errorEmptyMessage="formData.emailEmptyError" />
             <FormGroup type="password" placeholder="Password" label="Password" v-model="formData.password"
-              :error="formData.passwordEmptyError" :errorMessage="formData.passwordEmptyError" />
+              :error="formData.passwordError" :errorMessage="formData.passwordError"
+              :errorEmpty="formData.passwordEmptyError" :errorEmptyMessage="formData.passwordEmptyError" />
+            <FormGroup type="password" placeholder="Confirm Password" label="Confirm Password" v-model="formData.confirmPassword"
+              :error="formData.confirmPasswordError" :errorMessage="formData.confirmPasswordError"
+              :errorEmpty="formData.confirmPasswordEmptyError" :errorEmptyMessage="formData.confirmPasswordEmptyError" />
             <div class="my-6">
               <button type="submit"
                 class="w-full rounded-md bg-black px-3 py-4 text-white focus:bg-neutral-800 focus:outline-none">{{
-                  props.type === 'Sign Up' ? 'Sign Up' : 'Sign In'
+  props.type === 'Sign Up' ? 'Sign Up' : 'Sign In'
                 }}</button>
             </div>
-            <p class="text-center text-sm text-gray-500">Don&#x27;t have an account yet? <a href="#!"
+            <p v-if="type === 'Sign In'" class="text-center text-sm text-gray-500">Don&#x27;t have an account yet? <a href="#!"
                 class="font-semibold text-gray-600 hover:underline focus:text-gray-800 focus:outline-none">Sign
                 up</a>.</p>
           </form>
