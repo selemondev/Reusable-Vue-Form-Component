@@ -7,7 +7,7 @@ interface Props {
     inputClass?: string,
     errorClass?: string,
     modelValue: string | number,
-    error?: string,
+    error: string,
     errorMessage: string
 }
 const emit = defineEmits<{

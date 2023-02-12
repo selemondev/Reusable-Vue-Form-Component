@@ -16,6 +16,10 @@ export default defineConfig({
         ]
       }
     ],
+
+    dirs: [
+      "./src/composables"
+    ]
   }), Components({
     dirs: ["./src/components"],
     dts: true

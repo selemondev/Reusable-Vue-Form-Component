@@ -1,33 +1,43 @@
 <script lang="ts" setup>
 interface Props {
   email: string,
-  password: string
+  password: string,
+  emailError: string,
+  passwordError: string,
+  emailEmptyError: string,
+  passwordEmptyError: string
 };
+
 const formData = reactive<Props>({
   email: '',
-  password: ''
+  password: '',
+  emailError: '',
+  passwordError: '',
+  emailEmptyError: "",
+  passwordEmptyError: "",
 });
-
-const rules = computed(() => {
-  return {
-    email: { required: helpers.withMessage("Email address is required", required), email },
-    password: { required: helpers.withMessage("Password is required", required), minLength: minLength(8) }
-  }
-});
-
-
-const v$ = useVuelidate(rules, formData);
-const errors = reactive({
-  emailError: v$.value.email.email.$message,
-  passwordError: v$.value.password.password.$message,
-});
-
+const { validateEmail, validatePasswordLength } = useFormValidation()
 const emit = defineEmits(["submit"]);
 const handleSubmit = async () => {
   emit("submit", formData);
-  const response = await v$.value.$validate();
-  if (response) {
-    alert("Successful")
+  try {
+    if (!formData.email) {
+      formData.emailEmptyError = "Email address is required";
+    } else if (!validateEmail(formData.email)) {
+      formData.emailError = "Please enter a valid email address";
+    };
+
+    if (!formData.password) {
+      formData.passwordEmptyError = "Password is required";
+    } else if (!validatePasswordLength(formData.password)) {
+      formData.passwordError = "Password should be a minimum of 8 characters";
+    };
+
+    setTimeout(() => {
+      formData.emailEmptyError = formData.emailError = formData.passwordEmptyError = formData.passwordError = "";
+    }, 2000);
+  } catch (err: any) {
+    console.log(err)
   }
 }
 </script>
@@ -46,8 +56,10 @@ const handleSubmit = async () => {
         </div>
         <div class="mt-8">
           <form @submit.prevent="handleSubmit()">
-            <FormGroup v-model="formData.email" type="email" placeholder="Email Address" label="Email" :error="v$.email.$error" :errorMessage="errors.emailError" />
-            <FormGroup type="password" placeholder="Password" label="Password" v-model="formData.password" />
+            <FormGroup v-model="formData.email" type="email" placeholder="Email Address" label="Email"
+              :error="formData.emailEmptyError" :errorMessage="formData.emailEmptyError" />
+            <FormGroup type="password" placeholder="Password" label="Password" v-model="formData.password"
+              :error="formData.passwordEmptyError" :errorMessage="formData.passwordEmptyError" />
             <div class="my-6">
               <button type="submit"
                 class="w-full rounded-md bg-black px-3 py-4 text-white focus:bg-neutral-800 focus:outline-none">Sign

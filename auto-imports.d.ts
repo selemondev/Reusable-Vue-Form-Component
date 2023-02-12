@@ -52,6 +52,7 @@ declare global {
   const useAttrs: typeof import('vue')['useAttrs']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useFormValidation: typeof import('./src/composables/useFormValidation')['useFormValidation']
   const useSlots: typeof import('vue')['useSlots']
   const useVuelidate: typeof import('@vuelidate/core')['useVuelidate']
   const watch: typeof import('vue')['watch']
