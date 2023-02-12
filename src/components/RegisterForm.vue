@@ -3,19 +3,23 @@ const props = defineProps({
   type: String,
   typeDescription: String
 });
-const { formData, response } = useFormLoginValidation();
+
+const { formData, response } = useRegisterFormValidation();
 const emit = defineEmits(["submit"]);
 const handleSubmit = () => {
   const validate = response();
   emit("submit", formData);
   if (validate) {
-    console.log("Valid")
+    console.log(formData)
   }
 }
 </script>
 
 <template>
   <div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
+    <div
+      class="absolute inset-0 bg-[url(/img/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]">
+    </div>
     <div
       class="relative mx-auto w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
       <div class="w-full">
