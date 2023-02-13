@@ -11,6 +11,6 @@ const updateModelValue = (event: Event) => {
 </script>
 
 <template>
-    <input v-bind="$attrs" :value="modelValue"  @input="updateModelValue"
+    <input v-bind="$attrs" :value="modelValue" @input="updateModelValue"
         class="peer w-full rounded-md border border-gray-300 px-3 py-3 shadow shadow-gray-100 placeholder:text-transparent focus:border-gray-500 focus:outline-none"/>
 </template>
