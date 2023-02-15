@@ -24,11 +24,11 @@ const props = defineProps<Props>();
 <template>
     <div>
         <div class="relative mt-5">
-            <Input @update:modelValue="passModelValue" :v-model="props.modelValue" :type="props.type"
+            <FormInput @update:modelValue="passModelValue" :v-model="props.modelValue" :type="props.type"
                 :placeholder="props.placeholder" :value="props.modelValue" :class="props.inputClass" />
-            <Label :class="props.labelClass">{{ props.label }}</Label>
+            <FormLabel :class="props.labelClass">{{ props.label }}</FormLabel>
         </div>
-        <Error :class="props.errorClass" v-if="props.error">{{ props.error }}</Error>
-        <Error :class="props.errorClass" v-if="props.errorEmpty">{{ props.errorEmptyMessage }}</Error>
+        <FormError :class="props.errorClass" v-if="props.error">{{ props.error }}</FormError>
+        <FormError :class="props.errorClass" v-if="props.errorEmpty">{{ props.errorEmptyMessage }}</FormError>
     </div>
 </template>
