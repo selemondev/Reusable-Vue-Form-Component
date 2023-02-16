@@ -13,6 +13,10 @@ export default defineConfig({
 
         '@vuelidate/validators': [
           'required', 'email', 'sameAs', 'minLength', 'helpers'
+        ],
+
+        '@iconify/vue': [
+          'Icon'
         ]
       }
     ],
