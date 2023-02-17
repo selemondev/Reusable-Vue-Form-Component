@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 const props = defineProps({
   type: String,
-  typeDescription: String
+  typeDescription: String,
+  route: String
 });
 const { formData, response } = useFormLoginValidation();
 const emit = defineEmits(["submit"]);
@@ -41,9 +42,9 @@ const handleSubmit = async () => {
             <div class="my-1" v-if="props.type === 'Sign In'">
               <FormForgotPassword />
             </div>
-            <p class="text-center text-sm text-gray-500">Don't have an account yet? <a href="#!"
+            <p class="text-center text-sm text-gray-500">Don't have an account yet? <span
                 class="font-semibold text-black hover:underline">Sign
-                up</a>.</p>
+                up</span>.</p>
           </form>
         </div>
       </div>

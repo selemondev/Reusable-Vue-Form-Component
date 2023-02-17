@@ -7,7 +7,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    ForgotPassword: typeof import('./src/components/Form/ForgotPassword.vue')['default']
     FormError: typeof import('./src/components/Form/FormError.vue')['default']
     FormForgotPassword: typeof import('./src/components/Form/FormForgotPassword.vue')['default']
     FormGroup: typeof import('./src/components/Form/FormGroup.vue')['default']
