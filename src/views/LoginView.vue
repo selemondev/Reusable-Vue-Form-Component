@@ -10,5 +10,5 @@ const route = "/register"
 </script>
 
 <template>
-     <LoginForm @submit="handleClick()" :to="route" :formData="formData" type="Sign In" typeDescription="Sign In below to get access to your account"/>
+     <LoginForm @submit="handleClick()" :to='`${route}`' :formData="formData" type="Sign In" typeDescription="Sign In below to get access to your account"/>
 </template>
