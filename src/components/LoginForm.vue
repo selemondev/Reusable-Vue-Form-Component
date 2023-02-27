@@ -20,10 +20,7 @@ const handleSubmit = async () => {
     <div
       class="relative mx-auto w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
       <div class="w-full">
-        <div class="text-center">
-          <h1 class="text-3xl font-semibold text-gray-900">{{ props.type }}</h1>
-          <p class="mt-2 text-gray-500">{{ props.typeDescription }}</p>
-        </div>
+       <FormTitle :type="props.type" :description="props.typeDescription"/>
         <div class="mt-8">
           <form @submit.prevent="handleSubmit()">
             <FormGroup v-model="formData.email" type="email" placeholder="Email Address" label="Email"
