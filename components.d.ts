@@ -7,11 +7,14 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    FormComponent: typeof import('./src/components/Form/FormComponent.vue')['default']
     FormError: typeof import('./src/components/Form/FormError.vue')['default']
     FormForgotPassword: typeof import('./src/components/Form/FormForgotPassword.vue')['default']
     FormGroup: typeof import('./src/components/Form/FormGroup.vue')['default']
     FormInput: typeof import('./src/components/Form/FormInput.vue')['default']
     FormLabel: typeof import('./src/components/Form/FormLabel.vue')['default']
+    FormLayout: typeof import('./src/components/Form/FormLayout.vue')['default']
+    FormTitle: typeof import('./src/components/Form/FormTitle.vue')['default']
     LoginForm: typeof import('./src/components/LoginForm.vue')['default']
     RegisterForm: typeof import('./src/components/RegisterForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
