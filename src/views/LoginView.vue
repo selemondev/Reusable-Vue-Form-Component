@@ -6,5 +6,5 @@ const route = "/register"
 </script>
 
 <template>
-     <LoginForm @submit="handleClick()" :to='`${route}`' type="Sign In" typeDescription="Sign In below to get access to your account"/>
+     <LoginForm @submit="handleClick()" :to='`${route}`' type="Sign In" typeDescription="Sign In below to get access to your account" icon="logos:supabase-icon"/>
 </template>
